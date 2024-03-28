@@ -1,7 +1,5 @@
-package me.cosmodev.utils
+package me.airdead.ru.utils
 
-import me.airdead.ru.Plugin
-import org.bukkit.Bukkit
 import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
