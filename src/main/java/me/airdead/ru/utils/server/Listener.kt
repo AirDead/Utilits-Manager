@@ -1,4 +1,4 @@
-package me.airdead.utils
+package me.airdead.ru.utils
 
 import org.bukkit.event.Listener
 import org.bukkit.plugin.java.JavaPlugin
