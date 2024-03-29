@@ -1,6 +1,5 @@
 package me.airdead.ru.utils
 
-import org.bukkit.command.Command
 import org.bukkit.command.CommandExecutor
 import org.bukkit.command.CommandSender
 import org.bukkit.command.TabCompleter
@@ -9,34 +8,29 @@ import org.bukkit.plugin.java.JavaPlugin
 import java.util.*
 
 abstract class Command(
-    name: String?,
+    name: String,
     plugin: JavaPlugin,
-    isPlayerUse: Boolean,
-    args: Int,
-    perm: String?,
-    delayTicks: Int
-) :
-    CommandExecutor, TabCompleter {
+    private val isPlayerUse: Boolean,
+    private val args: Int,
+    private val permission: String?,
+    private val delayTicks: Int
+) : CommandExecutor, TabCompleter {
 
     private val cooldowns: MutableMap<UUID, Long> = HashMap()
 
     init {
-        plugin.getCommand(name!!)!!.setExecutor(this)
-        plugin.getCommand(name)!!.tabCompleter = this
-        Companion.isPlayerUse = isPlayerUse
-        Companion.args = args
-        permission = perm
-        Companion.delayTicks = delayTicks
+        plugin.getCommand(name)?.setExecutor(this)
+        plugin.getCommand(name)?.tabCompleter = this
     }
 
-    override fun onCommand(commandSender: CommandSender, command: Command, s: String, strings: Array<String>): Boolean {
+    override fun onCommand(commandSender: CommandSender, command: org.bukkit.command.Command, s: String, strings: Array<String>): Boolean {
         if (isPlayerUse && commandSender !is Player) {
             commandSender.sendMessage("§cПисать эту команду может только игрок.")
             return true
         }
 
-        if (!commandSender.hasPermission(permission!!)) {
-            commandSender.sendMessage("§cYou do not have permission to use this command.")
+        if (permission != null && !commandSender.hasPermission(permission)) {
+            commandSender.sendMessage("§cУ вас нету прав использовать комманду.")
             return true
         }
 
@@ -77,7 +71,7 @@ abstract class Command(
 
     override fun onTabComplete(
         commandSender: CommandSender,
-        command: Command,
+        command: org.bukkit.command.Command,
         s: String,
         strings: Array<String>
     ): List<String>? {
@@ -85,39 +79,4 @@ abstract class Command(
     }
 
     abstract fun tabComplete(sender: CommandSender?, args: Array<String>?): List<String>?
-
-    companion object {
-        private var isPlayerUse = false
-        private var args = 0
-        private var permission: String? = null
-        private var delayTicks = 0
-    }
-//    import org.bukkit.command.CommandSender
-//    import org.bukkit.entity.Player
-//    import org.bukkit.plugin.java.JavaPlugin
-//
-//    class ExampleCommand(plugin: JavaPlugin) : Command(
-//        "example", plugin, true, 0, "example.permission", 20 // Задержка в 20 тиков
-//    ) {
-//        override fun execute(sender: CommandSender?, args: Array<String>?, label: String?) {
-//            val player = sender as Player
-//
-//            player.sendMessage("§aПример сообщения")
-//
-//            if (player.name == "Server") {
-//                return
-//            }
-//
-//            player.sendMessage("§cВаш ник не Server")
-//        }
-//
-//        override fun tabComplete(sender: CommandSender?, args: Array<String>?): List<String>? {
-//            return null
-//        }
-//    }
-//
-//    // Регистрация команды
-//// В вашем плагине (в методе onEnable() или где-то подобном):
-//    val exampleCommand = ExampleCommand(this)
-
 }
