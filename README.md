@@ -19,7 +19,7 @@
 </dependency>
 ```
 
-### Grade:
+### Gradle:
 
 ```xml
 dependencyResolutionManagement {
