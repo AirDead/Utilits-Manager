@@ -37,6 +37,13 @@ object ItemBuilder {
         this.itemMeta = meta
     }
 
+    fun <T, Z : Any> ItemStack.hasPersistentDataContainer(key: String, type: PersistentDataType<T, Z>): Boolean {
+        val meta = this.itemMeta
+        return NamespacedKey.fromString(key)?.let { namespacedKey ->
+            meta?.persistentDataContainer?.has(namespacedKey, type) ?: false
+        } ?: false
+    }
+
     fun ItemStack.setCustomModelData(value: Int) {
         val meta = this.itemMeta
         meta?.setCustomModelData(value)
