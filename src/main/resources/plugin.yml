@@ -1,4 +1,0 @@
-name: Utilit-Manager
-version: '${project.version}'
-main: me.airdead.ru.Plugin
-api-version: '1.16'
