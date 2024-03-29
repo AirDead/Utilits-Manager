@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.scheduler.BukkitRunnable
 import org.bukkit.scheduler.BukkitTask
 
-object ChatUtils {
+object ChatUtility {
 
     fun format(message: String): String {
         return ChatColor.translateAlternateColorCodes('&', message)

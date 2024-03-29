@@ -77,14 +77,19 @@ class ConfigManager {
 
     val configuration: FileConfiguration
         get() = YamlConfiguration.loadConfiguration(file!!)
-// Example:
-    //    public static ConfigManager config;
-    //
-    //    config = new ConfigManager(this, "config.yml");
-    //        if(config.isNew()){
-    //        FileConfiguration data = config.getConfiguration();
-    //        data.set("example.section.in.example.config.with.example.value", "ExampleValue");
-    //        data.getString("example.section.in.example.config.with.example.value");
-    //        config.save(data);
-    //    }
+
+//    val configManager = ConfigManager(тут инстанс плагина, "config.yml")
+//
+//    // Получение объекта FileConfiguration из ConfigManager для работы с конфигурацией
+//    val config = configManager.configuration
+//
+//    // Установка значений в конфигурации
+//    config.set("example.key", "1")
+//
+//    // Сохранение конфигурации
+//    configManager.save(config)
+//
+//    // Получение значения из конфигурации
+//    val value = config.getString("example.key")
+//    println("Значение: $value") // Вываст: 1
 }
