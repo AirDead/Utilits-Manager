@@ -35,13 +35,13 @@ abstract class Command(
             return true
         }
 
-        if (strings.size != args) {
-            commandSender.sendMessage("§cВы ввели недостаточное количество аргументов.")
+        if (!commandSender.hasPermission(permission!!)) {
+            commandSender.sendMessage("§cYou do not have permission to use this command.")
             return true
         }
 
-        if (!(commandSender.hasPermission(permission!!) || !(commandSender.isOp))) {
-            commandSender.sendMessage("§cУ вас недостаточно прав.")
+        if (strings.size != args) {
+            commandSender.sendMessage("§cВы ввели недостаточное количество аргументов.")
             return true
         }
 
