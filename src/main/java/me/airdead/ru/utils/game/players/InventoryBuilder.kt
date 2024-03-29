@@ -3,7 +3,7 @@ package me.airdead.ru.utils.game.players
 import org.bukkit.inventory.Inventory
 import org.bukkit.inventory.ItemStack
 
-class InventoryBuilder {
+object InventoryBuilder {
     fun Inventory.setRow(row: Int, item: ItemStack) {
         val start = (row - 1) * 9
         val end = start + 9
